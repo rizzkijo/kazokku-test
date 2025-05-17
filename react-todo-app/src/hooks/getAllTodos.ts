@@ -12,8 +12,7 @@ const useAllTodos = () => {
       const data = await allTodos();
       setTodos(data);
     } catch (err) {
-      console.log('jotest error', err);
-      setError("Gagal mengambil data todo.");
+      setError(`Failed to fetch task(s): ${err}`);
     } finally {
       setLoading(false);
     }

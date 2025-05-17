@@ -6,12 +6,13 @@ import { cn } from '@/lib/utils';
 const Header = () => (
   <>
     <header className={cn(
-      'sticky top-0 z-1 px-6 py-3 bg-background text-foreground shadow-md',
+      'sticky top-0 z-1 bg-background text-foreground shadow-md',
+      'h-[60px] flex items-center px-4',
       'border border-b-primary dark:border-b-primary-foreground',
     )}>
-      <div className="flex items-center justify-between container max-w-6xl mx-auto">
+      <div className="flex items-center justify-between container mx-auto">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="Logo" className="h-[40px]" />
+          <img src={logo} alt="Logo" className="h-[30px] md:h-[40px]" />
         </div>
 
         <ButtonToggleTheme />

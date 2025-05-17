@@ -13,21 +13,26 @@ const ButtonToggleTheme = ({ wrapperClassName, ...props }: ButtonToggleThemeProp
 
   return (
     <div className={cn(
-      'flex items-center space-x-3', wrapperClassName,
+      'flex items-center space-x-1 md:space-x-2', wrapperClassName,
     )}>
-      <Label htmlFor="toggleTheme" className="cursor-pointer text-xs">
-        <Sun size={15} />
-        Light
+      <Label htmlFor="toggleTheme" className="cursor-pointer text-xs" title="Light mode!">
+        <Sun className={cn(
+          'w-[15px] h-[15px] md:w-[20px] md:h-[20px]',
+          darkMode ? 'text-gray-500' : 'text-yellow-600',
+        )} />
       </Label>
       <Switch
         id="toggleTheme"
         checked={darkMode}
-        {...props }
         onCheckedChange={toggleTheme}
+        title="Toggle Theme"
+        {...props }
       />
-      <Label htmlFor="toggleTheme" className="cursor-pointer text-xs">
-        Dark
-        <Moon size={15} />
+      <Label htmlFor="toggleTheme" className="cursor-pointer text-xs" title="Dark mode!">
+        <Moon className={cn(
+          'w-[15px] h-[15px] md:w-[20px] md:h-[20px]',
+          darkMode ? 'text-yellow-500' : 'text-gray-400',
+        )} />
       </Label>
     </div>
   );

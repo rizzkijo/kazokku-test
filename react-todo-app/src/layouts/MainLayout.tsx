@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Toaster } from '@/components/ui/sonner';
 import { useToggleTheme } from '@/stores/themeStore';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const MainLayout = () => {
   const { darkMode } = useToggleTheme();
@@ -19,12 +20,13 @@ const MainLayout = () => {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-accent text-foreground">
+
+      <main className="min-h-[calc(100vh_-_60px-_60px)] bg-accent text-foreground">
         <Outlet />
       </main>
-      <footer>
-        <h2>Footer</h2>
-      </footer>
+
+      <Footer />
+
       <Toaster richColors position="bottom-right" />
     </>
   );

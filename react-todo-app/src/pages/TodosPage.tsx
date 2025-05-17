@@ -1,39 +1,58 @@
 import useAllTodos from '@/hooks/getAllTodos'
+import CardTask from '@/components/CardTask'
+import AddNewTask from '@/components/AddNewTaskButton'
+import { cn } from '@/lib/utils'
+
+import { LayoutList, ListChecks } from 'lucide-react'
 
 const TodosPage = () => {
-  const { todos, loading, error } = useAllTodos();
-  console.log('jotest todos', todos);
+  const { todos, loading, error, refetch } = useAllTodos();
 
   return (
-    <section className="p-6 max-w-2xl mx-auto">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Todo List</h1>
+    <div className="py-4 container mx-auto">
+      <div className="flex items-center justify-between gap-8 mb-8">
+        <h1 className="text-3xl font-bold">Task List</h1>
+        <AddNewTask refetch={refetch} />
       </div>
+      <section className={cn(
+        'grid grid-cols-1 md:grid-cols-2 gap-8',
+      )}>
+        <div className="flex flex-col gap-3">
+          <h2 className="text-lg font-bold flex items-center gap-2">
+            <LayoutList size={20} />
+            On My Plate
+          </h2>
+          <ul className="space-y-3">
+            {todos.filter((todo) => !todo.completed).map((todo) => (
+              <li key={todo.id}>
+                <CardTask data={todo} refetch={refetch} />
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      {loading && <p>Loading todos...</p>}
-      {error && <p className="text-red-500">{error}</p>}
+        <div className="flex flex-col gap-3">
+          <h2 className="text-lg font-bold flex items-center gap-2">
+            <ListChecks size={20} />
+            All Done
+          </h2>
+          <ul className="space-y-3">
+            {todos.filter((todo) => todo.completed).map((todo) => (
+              <li key={todo.id}>
+                <CardTask data={todo} />
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      {!loading && todos.length === 0 && (
-        <p className="text-muted-foreground">Belum ada todo.</p>
-      )}
+        {loading && <p>Loading todos...</p>}
+        {error && <p className="text-red-500">{error}</p>}
 
-      <ul className="space-y-3">
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className="border rounded-md px-4 py-2 flex flex-col gap-1"
-          >
-            <span className={todo.completed ? "line-through text-muted-foreground" : ""}>
-              {todo.title}
-            </span>
-            <p>{todo.description}</p>
-            {todo.completed && (
-              <span className="text-sm text-green-600 font-medium">Selesai</span>
-            )}
-          </li>
-        ))}
-      </ul>
-    </section>
+        {!loading && todos.length === 0 && (
+          <p className="text-muted-foreground">There's no task yet. Let's create one!</p>
+        )}
+      </section>
+    </div>
   );
 };
 

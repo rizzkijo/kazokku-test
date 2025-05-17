@@ -21,7 +21,7 @@ const useUserToken = () => {
       localStorage.setItem("aTkn", data.token);
       localStorage.setItem("aUsr", data.username);
 
-      toast.success(`Welcome, ${data.username}!`);
+      toast.success(`Welcome, ${data.username.split('@')[0]}!`);
       setLoggedIn(true);
 
       setTimeout(() => {
