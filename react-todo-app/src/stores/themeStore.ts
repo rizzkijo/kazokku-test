@@ -4,6 +4,10 @@ type ThemeState = {
   darkMode: boolean
 };
 
+type FooterCopyTextState = {
+  footerCopyText: string
+}
+
 type ThemeAction = {
   toggleTheme: (darkMode: ThemeState['darkMode']) => void
 };
@@ -13,7 +17,7 @@ const getInitialDarkMode = (): boolean => {
   return stored ? JSON.parse(stored) : false;
 }
 
-const useToggleTheme = create<ThemeState & ThemeAction>((set) => ({
+export const useToggleTheme = create<ThemeState & ThemeAction>((set) => ({
   darkMode: getInitialDarkMode(),
   toggleTheme: () => set((state) => {
     const next = !state.darkMode;
@@ -23,4 +27,6 @@ const useToggleTheme = create<ThemeState & ThemeAction>((set) => ({
   }),
 }));
 
-export default useToggleTheme;
+export const useFooterCopyText = create<FooterCopyTextState>(() => ({
+  footerCopyText: "Developed by @rizzkijo © 2025.",
+}));

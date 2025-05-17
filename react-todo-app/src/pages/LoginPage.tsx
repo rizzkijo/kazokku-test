@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 
 import useUserToken from '@/hooks/getUserToken'
+import { useFooterCopyText } from '@/stores/themeStore'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -14,6 +15,7 @@ import ButtonToggleTheme from '@/components/ButtonToggleTheme'
 
 const LoginPage = () => {
   const { loginUser, loggedIn, loading } = useUserToken();
+  const { footerCopyText } = useFooterCopyText();
   
   const {
     register,
@@ -39,13 +41,7 @@ const LoginPage = () => {
         <p className="text-gray-600 dark:text-gray-400">Hey, what's next on the list?</p>
       </div>
 
-      <form
-        onSubmit={handleSubmit((e) => {
-          console.log('jotest e', e);
-          loginUser(e);
-        })}
-        className="space-y-4"
-      >
+      <form onSubmit={handleSubmit(loginUser)} className="space-y-4">
         <div>
           <Label htmlFor="email" className="block text-sm font-medium mb-1">Email</Label>
           <Input
@@ -107,9 +103,7 @@ const LoginPage = () => {
           </div>
         </div>
 
-        <p className="text-center text-gray-600 dark:text-gray-400 mt-8">
-          @rizzkijo &copy; 2025.
-        </p>
+        <p className="text-center text-gray-600 dark:text-gray-400 mt-8">{footerCopyText}</p>
       </form>
     </section>
   )

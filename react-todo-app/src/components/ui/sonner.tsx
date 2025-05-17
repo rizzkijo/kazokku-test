@@ -1,5 +1,5 @@
 import { Toaster as Sonner, type ToasterProps } from "sonner";
-import useToggleTheme from "@/stores/themeStore";
+import { useToggleTheme } from "@/stores/themeStore";
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { darkMode } = useToggleTheme();

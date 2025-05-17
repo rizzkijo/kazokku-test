@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
-import useToggleTheme from '@/stores/themeStore';
+import { useToggleTheme } from '@/stores/themeStore';
 import { useEffect } from 'react';
 
 const LoginLayout = () => {

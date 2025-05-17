@@ -1,8 +1,6 @@
 import useAllTodos from '@/hooks/getAllTodos'
-import { useLogout } from '@/hooks/userLogout';
 
 const TodosPage = () => {
-  const handleLogout = useLogout();
   const { todos, loading, error } = useAllTodos();
   console.log('jotest todos', todos);
 
@@ -10,12 +8,6 @@ const TodosPage = () => {
     <section className="p-6 max-w-2xl mx-auto">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Todo List</h1>
-        <button
-          onClick={handleLogout}
-          className="text-sm px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-        >
-          Logout
-        </button>
       </div>
 
       {loading && <p>Loading todos...</p>}
