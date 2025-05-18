@@ -14,7 +14,7 @@ const TodosContent = () => {
 
   return (
     <>
-      <div className="md:sticky md:top-[60px] z-1 py-4 mb-4 bg-accent/90">
+      <div className="md:sticky md:top-[60px] z-1 py-4 mb-4 bg-accent/80">
         <div className="container mx-auto">
           <div className="flex items-center justify-between gap-8">
             <h1 className="text-3xl font-bold">Task List</h1>

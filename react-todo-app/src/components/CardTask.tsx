@@ -20,23 +20,6 @@ const CardTask = ({ data }: CardTaskType) => {
     <div className={cn(
       'rounded-md p-5 pt-4 bg-background shadow-md',
     )}>
-      <div
-        className={cn(
-          'flex flex-wrap items-center justify-between gap-3 mb-2 pb-4',
-          'border-b border-b-gray-300 dark:border-b-gray-600'
-        )}
-      >
-        <span className="flex items-center gap-[6px] text-sm text-muted-foreground">
-          <CalendarClock size={15} className="text-foreground" />
-          <span className="hidden md:inline">Created on</span> {dateCreate}
-        </span>
-        {!isTheDateSame && (
-          <span className="flex items-center gap-[6px] text-sm text-muted-foreground">
-            <CalendarCheck2 size={15} className="text-foreground" />
-            <span className="hidden md:inline">Updated on</span> {dateUpdate}
-          </span>
-        )}
-      </div>
       <h3 className={cn(
         'flex items-baseline gap-3 font-bold text-lg text-foreground mb-2 flex-8/12',
       )}>
@@ -62,6 +45,23 @@ const CardTask = ({ data }: CardTaskType) => {
           <AddNewTask isEdit defaultValues={data} />
           <DeleteTaskButton id={data.id} />
         </div>
+      </div>
+      <div
+        className={cn(
+          'flex flex-wrap items-center justify-between gap-3 mt-5 pt-4',
+          'border-t border-t-gray-300 dark:border-t-gray-600'
+        )}
+      >
+        <span className="flex items-center gap-[6px] text-sm text-muted-foreground">
+          <CalendarClock size={15} className="text-foreground" />
+          <span className="hidden md:inline">Created on</span> {dateCreate}
+        </span>
+        {!isTheDateSame && (
+          <span className="flex items-center gap-[6px] text-sm text-muted-foreground">
+            <CalendarCheck2 size={15} className="text-foreground" />
+            <span className="hidden md:inline">Updated on</span> {dateUpdate}
+          </span>
+        )}
       </div>
     </div>
   );
