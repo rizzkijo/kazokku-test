@@ -1,11 +1,12 @@
 export const formatDateTime = (input: string) => {
   const [datePart, timePart] = input.split(' ');
+  console.log('jotest datePart', datePart);
   const isoString = `${datePart}T${timePart}Z`;
 
   const date = new Date(isoString);
 
   const formattedDate = date.toLocaleDateString('en-US', {
-    dateStyle: 'medium',
+    dateStyle: 'short',
     timeZone: 'Asia/Bangkok',
   });
 
@@ -16,5 +17,5 @@ export const formatDateTime = (input: string) => {
     timeZone: 'Asia/Bangkok',
   });
 
-  return `${formattedDate} - ${formattedTime}`;
+  return `${formattedDate} at ${formattedTime}`;
 };
