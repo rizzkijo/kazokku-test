@@ -1,26 +1,25 @@
-import useAllTodos from '@/hooks/getAllTodos'
 import CardTask from '@/components/CardTask'
 import AddNewTask from '@/components/AddNewTaskButton'
 import { cn } from '@/lib/utils'
-
 import { Info, LayoutList, ListChecks } from 'lucide-react'
 import CardTaskSkeleton from '@/components/CardTaskSkeleton'
-
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const TodosPage = () => {
-  const { todos, loading, error, refetch } = useAllTodos();
+import { useTodosContext } from './TodosContext'
+import type { TodosType } from '@/types/TodosType'
+
+const TodosContent = () => {
+  const { todos, loading, error } = useTodosContext();
 
   return (
     <div className="py-4 container mx-auto">
       <div className="flex items-center justify-between gap-8 mb-8">
         <h1 className="text-3xl font-bold">Task List</h1>
-        <AddNewTask refetch={refetch} />
+        <AddNewTask />
       </div>
-      <section className={cn(
-        'grid grid-cols-1 lg:grid-cols-2 gap-8',
-      )}>
+
+      <section className={cn('grid grid-cols-1 lg:grid-cols-2 gap-8')}>
         {error && <p className="text-red-500">{error}</p>}
 
         {loading ? (
@@ -29,7 +28,7 @@ const TodosPage = () => {
               <div key={i} className="flex flex-col gap-3">
                 <Skeleton className="h-6" />
                 <ul className="space-y-3">
-                  {[1,2].map((i) => (
+                  {[1, 2].map((i) => (
                     <li key={i}>
                       <CardTaskSkeleton />
                     </li>
@@ -39,22 +38,24 @@ const TodosPage = () => {
             ))}
           </>
         ) : todos.length === 0 ? (
-          <p className="text-muted-foreground">There's no task yet. Let's create one!</p>
+          <p className="text-muted-foreground">
+            There's no task yet. Let's create one!
+          </p>
         ) : (
           <>
             {[
               {
-                title: "On My Plate",
+                title: 'On My Plate',
                 icon: <LayoutList size={20} />,
-                todos: todos.filter(todo => !todo.completed),
-                message: "You're all done!"
+                todos: todos.filter((todo): todo is TodosType => Boolean(!todo.completed)),
+                message: "You're all done!",
               },
               {
-                title: "All Done", 
+                title: 'All Done',
                 icon: <ListChecks size={20} />,
-                todos: todos.filter(todo => todo.completed),
-                message: "There are no completed tasks yet. Let's do one!"
-              }
+                todos: todos.filter((todo): todo is TodosType => Boolean(todo.completed)),
+                message: "There are no completed tasks yet. Let's do one!",
+              },
             ].map((section) => (
               <div key={section.title} className="flex flex-col gap-3">
                 <h2 className="text-lg font-bold flex items-center gap-2">
@@ -70,7 +71,7 @@ const TodosPage = () => {
                   ) : (
                     section.todos.map((todo) => (
                       <li key={todo.id}>
-                        <CardTask data={todo} refetch={refetch} />
+                        <CardTask data={todo} />
                       </li>
                     ))
                   )}
@@ -84,4 +85,4 @@ const TodosPage = () => {
   );
 };
 
-export default TodosPage;
+export default TodosContent;

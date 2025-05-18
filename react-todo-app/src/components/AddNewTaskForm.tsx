@@ -5,6 +5,8 @@ import { Save, Undo2 } from "lucide-react";
 import useCreateTodo from "@/hooks/createTodo";
 import useUpdateTodo from "@/hooks/updateTodo";
 
+import { useTodosContext } from "@/pages/TodosPage/TodosContext";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +16,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import type { AddNewTaskFormProps } from "@/types/NewTodoType";
 import type { UpdateTaskPayload } from "@/types/NewTodoType";
 
-const AddNewTaskForm = ({ setOpenDialog, refetch, defaultValues }: AddNewTaskFormProps) => {
+const AddNewTaskForm = ({ setOpenDialog, defaultValues }: AddNewTaskFormProps) => {
+  const { refetch } = useTodosContext()
+
   const defaultCompletedValue = defaultValues?.completed === 1 ? 1 : 0;
   const [completedValue, setCompletedValue] = useState<0 | 1 | boolean>(defaultCompletedValue);
 
@@ -51,7 +55,7 @@ const AddNewTaskForm = ({ setOpenDialog, refetch, defaultValues }: AddNewTaskFor
       setTimeout(() => {
         setOpenDialog(false);
         reset();
-        refetch?.();
+        refetch();
       }, 1000);
     } catch (err) {
       console.log('Update Task Error:', err);

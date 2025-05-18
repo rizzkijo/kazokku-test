@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import {
   Dialog,
   DialogContent,
@@ -10,16 +12,14 @@ import { Button } from '@/components/ui/button'
 
 import { Plus, SquarePen } from 'lucide-react'
 import AddNewTaskForm from './AddNewTaskForm'
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
+
+import { cn } from '@/lib/utils'
 
 const AddNewTask = ({
   isEdit = false,
-  refetch,
   defaultValues,
 }: {
   isEdit?: boolean,
-  refetch?: () => void | Promise<void>,
   defaultValues?: {
     id: number;
     title: string;
@@ -63,7 +63,6 @@ const AddNewTask = ({
         <AddNewTaskForm
           defaultValues={defaultValues}
           setOpenDialog={setOpenDialog}
-          refetch={refetch}
         />
       </DialogContent>
     </Dialog>

@@ -14,18 +14,19 @@ import {
 
 import useUpdateTodo from "@/hooks/updateTodo";
 
-// import type { DeleteTaskType } from "@/types/CardTaskType";
+import { useTodosContext } from '@/pages/TodosPage/TodosContext'
 
-const MarkAsCompletedButton = ({ value, refetch }: {
+
+const MarkAsCompletedButton = ({ value }: {
   value: {
     id: number;
     title: string;
     description: string;
     completed: 0 | 1 | boolean;
   },
-  refetch?: () => void | Promise<void>,
 }) => {
   const { mutate } = useUpdateTodo();
+  const { refetch } = useTodosContext();
 
   const handleCompleted = async () => {
     try {

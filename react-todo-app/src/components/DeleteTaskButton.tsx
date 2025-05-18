@@ -12,11 +12,13 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import useDeleteTodo from '@/hooks/deleteTodo'
+import useDeleteTodo from '@/hooks/deleteTodo';
 
-import type { DeleteTaskType } from "@/types/CardTaskType";
+import { useTodosContext } from '@/pages/TodosPage/TodosContext';
 
-const DeleteTaskButton = ({ id, refetch }: DeleteTaskType) => {
+const DeleteTaskButton = ({ id }: { id: number }) => {
+  const { refetch } = useTodosContext();
+
   const { mutate } = useDeleteTodo();
 
   const handleDelete = async () => {

@@ -8,7 +8,7 @@ import DeleteTaskButton from "./DeleteTaskButton";
 import AddNewTask from "./AddNewTaskButton";
 import MarkAsCompletedButton from "./MarkAsCompletedButton";
 
-const CardTask = ({ data, refetch }: CardTaskType) => {
+const CardTask = ({ data }: CardTaskType) => {
   return (
     <div className={cn(
       'rounded-md p-5 pt-4 bg-background shadow-md',
@@ -31,12 +31,12 @@ const CardTask = ({ data, refetch }: CardTaskType) => {
         !data.completed ? 'justify-between' : 'justify-end',
       )}>
         {!data.completed && (
-          <MarkAsCompletedButton value={data} refetch={refetch} />
+          <MarkAsCompletedButton value={data} />
         )}
 
         <div className="flex items-center gap-2">
-          <AddNewTask isEdit defaultValues={data} refetch={refetch} />
-          <DeleteTaskButton id={data.id} refetch={refetch} />
+          <AddNewTask isEdit defaultValues={data} />
+          <DeleteTaskButton id={data.id} />
         </div>
       </div>
     </div>

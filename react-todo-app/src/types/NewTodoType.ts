@@ -7,7 +7,6 @@ export type NewTodoPayload = {
 
 export type AddNewTaskFormProps = {
   setOpenDialog: (val: boolean) => void;
-  refetch?: () => void;
   defaultValues?: {
     id: number;
     title: string;
