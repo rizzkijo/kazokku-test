@@ -8,28 +8,63 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 
-import { FilePlus2 } from 'lucide-react'
+import { Plus, SquarePen } from 'lucide-react'
 import AddNewTaskForm from './AddNewTaskForm'
 import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
-const AddNewTask = ({ refetch }: { refetch: () => void }) => {
+const AddNewTask = ({
+  isEdit = false,
+  refetch,
+  defaultValues,
+}: {
+  isEdit?: boolean,
+  refetch?: () => void | Promise<void>,
+  defaultValues?: {
+    id: number;
+    title: string;
+    description: string;
+    completed: 0 | 1 | boolean;
+  },
+}) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
+
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
-        <Button>
-          <FilePlus2 />
-          Create New Task
+        <Button
+          variant={isEdit ? 'outline' : 'default'}
+          className={cn(
+            !isEdit && 'fixed bottom-6 right-4 rounded-full',
+            'md:static md:rounded-md',
+          )}
+          title={isEdit ? 'Edit This Task' : 'Create New Task'}
+        >
+          {isEdit ? <SquarePen /> : <Plus />}
+          <span
+            className={cn(
+              'hidden md:inline',
+              isEdit && 'md:hidden',
+            )}
+          >
+            {isEdit ? '' : 'Create New Task'}
+          </span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create New Task</DialogTitle>
+          <DialogTitle>
+            {isEdit ? 'Edit Task' : 'Create New Task'}
+          </DialogTitle>
           <DialogDescription>
-            What's next on your list? Let’s add it!
+            {isEdit ? "Need to tweak something? Let's fix it up!" : "What's next on your list? Let's add it!"}
           </DialogDescription>
         </DialogHeader>
-        <AddNewTaskForm setOpenDialog={setOpenDialog} refetch={refetch} />
+        <AddNewTaskForm
+          defaultValues={defaultValues}
+          setOpenDialog={setOpenDialog}
+          refetch={refetch}
+        />
       </DialogContent>
     </Dialog>
   );

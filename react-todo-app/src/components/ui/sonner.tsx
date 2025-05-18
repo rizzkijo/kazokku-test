@@ -6,7 +6,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
   return (
     <Sonner
-      theme={darkMode ? "dark" : "light"} // ✅ based on Zustand
+      theme={darkMode ? "dark" : "light"}
       className="toaster group"
       style={
         {

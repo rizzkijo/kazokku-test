@@ -81,7 +81,7 @@ const ButtonUserLogout = () => {
                   onClick={handleLogout}
                   className="bg-red-500 hover:bg-red-400 text-white cursor-pointer"
                 >
-                  I’m done
+                  I'm done
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
