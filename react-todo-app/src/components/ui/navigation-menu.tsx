@@ -164,5 +164,6 @@ export {
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
+  /* eslint-disable react-refresh/only-export-components */
   navigationMenuTriggerStyle,
 }
