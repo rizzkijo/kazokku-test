@@ -1,6 +1,5 @@
 export const formatDateTime = (input: string) => {
   const [datePart, timePart] = input.split(' ');
-  console.log('jotest datePart', datePart);
   const isoString = `${datePart}T${timePart}Z`;
 
   const date = new Date(isoString);
