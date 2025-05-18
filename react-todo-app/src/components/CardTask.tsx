@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 
 import { CheckCheck } from "lucide-react";
@@ -7,6 +6,7 @@ import { CheckCheck } from "lucide-react";
 import type { CardTaskType } from "@/types/CardTaskType";
 import DeleteTaskButton from "./DeleteTaskButton";
 import AddNewTask from "./AddNewTaskButton";
+import MarkAsCompletedButton from "./MarkAsCompletedButton";
 
 const CardTask = ({ data, refetch }: CardTaskType) => {
   return (
@@ -31,10 +31,7 @@ const CardTask = ({ data, refetch }: CardTaskType) => {
         !data.completed ? 'justify-between' : 'justify-end',
       )}>
         {!data.completed && (
-          <Button title="Mark as Completed">
-            <CheckCheck />
-            Mark as Completed
-          </Button>
+          <MarkAsCompletedButton value={data} refetch={refetch} />
         )}
 
         <div className="flex items-center gap-2">

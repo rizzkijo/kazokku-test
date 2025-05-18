@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { Trash2 } from "lucide-react";
+import { CheckCheck } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,41 +12,52 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import useDeleteTodo from '@/hooks/deleteTodo'
+import useUpdateTodo from "@/hooks/updateTodo";
 
-import type { DeleteTaskType } from "@/types/CardTaskType";
+// import type { DeleteTaskType } from "@/types/CardTaskType";
 
-const DeleteTaskButton = ({ id, refetch }: DeleteTaskType) => {
-  const { mutate } = useDeleteTodo();
+const MarkAsCompletedButton = ({ value, refetch }: {
+  value: {
+    id: number;
+    title: string;
+    description: string;
+    completed: 0 | 1 | boolean;
+  },
+  refetch?: () => void | Promise<void>,
+}) => {
+  const { mutate } = useUpdateTodo();
 
-  const handleDelete = async () => {
+  const handleCompleted = async () => {
     try {
-      await mutate(id);
+      await mutate(value.id, {
+    title: value.title,
+    description: value.description,
+    completed: 1,
+  });
       if (refetch) {
         setTimeout(() => {
           refetch();
         }, 1000);
       }
     } catch (err) {
-      console.error('Failed to delete task:', err);
+      console.error('Failed to complete task:', err);
     }
   };
 
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          variant="destructive"
-          size="icon"
-          title="Delete Task"
-        >
-          <Trash2 />
+        <Button title="Mark as Completed">
+          <CheckCheck />
+          Mark as Completed
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>This task about to go poof! Sure?</AlertDialogTitle>
+          <AlertDialogTitle>{value.title}</AlertDialogTitle>
           <AlertDialogDescription>
+            This task will be completed soon! Sure?
+            <br />
             Warning: This action cannot be undone (no cheat codes!)
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -60,8 +71,7 @@ const DeleteTaskButton = ({ id, refetch }: DeleteTaskType) => {
           </AlertDialogCancel>
           <AlertDialogAction asChild>
             <Button
-              variant="destructive"
-              onClick={handleDelete}
+              onClick={handleCompleted}
               className="bg-destructive hover:bg-destructive/60"
             >
               I'm sure
@@ -73,4 +83,4 @@ const DeleteTaskButton = ({ id, refetch }: DeleteTaskType) => {
   );
 };
 
-export default DeleteTaskButton;
+export default MarkAsCompletedButton;

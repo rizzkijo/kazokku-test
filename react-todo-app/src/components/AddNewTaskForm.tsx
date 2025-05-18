@@ -98,10 +98,10 @@ const AddNewTaskForm = ({ setOpenDialog, refetch, defaultValues }: AddNewTaskFor
               htmlFor="completed"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Mark as Completed
+              {completedValue === 1 ? 'Task is completed' : 'Mark as completed'}
             </label>
             <p className="text-sm text-muted-foreground">
-              Sure it's done? Boom, sealed!
+              {completedValue === 1 ? "You can't change completed task status" : "Sure it's done? Boom, sealed!"}
             </p>
           </div>
         </div>

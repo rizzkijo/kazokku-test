@@ -7,7 +7,7 @@ const Header = () => (
   <>
     <header className={cn(
       'sticky top-0 z-1 bg-background text-foreground shadow-md',
-      'h-[60px] flex items-center px-4',
+      'h-[60px] flex items-center',
       'border border-b-primary dark:border-b-primary-foreground',
     )}>
       <div className="flex items-center justify-between container mx-auto">

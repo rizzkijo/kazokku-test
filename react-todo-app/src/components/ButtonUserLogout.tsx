@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 
 import { useLogout } from '@/hooks/userLogout'
 
-import { LogOut } from 'lucide-react'
+import { LogOut, User } from 'lucide-react'
 import { ChevronDown } from 'lucide-react'
 
 import { Button } from './ui/button'
@@ -38,7 +38,8 @@ const ButtonUserLogout = () => {
           '!px-0',
         )}
       >
-        {`Hi, ${username}!`}
+        <User />
+        {username}
         <ChevronDown
           className={cn(
             'transition-all duration-300',
@@ -61,7 +62,7 @@ const ButtonUserLogout = () => {
               )}
             >
               <LogOut size={16} />
-              Sign Out
+              <span className="font-bold">Sign Out</span>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
