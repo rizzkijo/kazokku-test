@@ -2,14 +2,14 @@
 # Project Setup Guide
 
 This repository contains two frontend projects:
-- React app in `/react-todo-app`
-- Vue 3 app in `/vue-todo-app`
+- React + Vite app in `/react-todo-app`
+- Vue 3 + Vite app in `/vue-todo-app`
 
 ---
 
 ## Prerequisites
 
-- Node.js (v16+ recommended)
+- Node.js (v18+ recommended)
 - npm or yarn installed
 
 ---
