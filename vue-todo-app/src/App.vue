@@ -2,6 +2,8 @@
 import { computed } from "vue"
 import { useRoute } from "vue-router"
 
+import { Toaster } from "@/components/ui/sonner"
+
 import MainLayout from "./layouts/MainLayout.vue"
 import LoginLayout from "./layouts/LoginLayout.vue"
 
@@ -15,19 +17,10 @@ const layoutComponent = computed(() => {
 </script>
 
 <template>
-  <!-- <div class="p-4">
-    <nav class="space-x-4">
-      <router-link to="/">Home</router-link>
-      <router-link to="/todos">Task List</router-link>
-    </nav>
-
-    <hr class="my-4" />
-
-    <router-view />
-  </div> -->
   <component :is="layoutComponent">
     <router-view />
   </component>
+  <Toaster />
 </template>
 
 <style scoped></style>

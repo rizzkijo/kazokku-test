@@ -15,13 +15,11 @@ API.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401 || error.response?.status === 403) {
-      // Expired or invalid token, clear storage
       localStorage.removeItem("aTkn");
       localStorage.removeItem("aUsr");
 
       toast.error("Session expired. Please re-login.");
-      
-      // Redirect to login
+
       setTimeout(() => {
         window.location.href = "/";
       }, 3000);

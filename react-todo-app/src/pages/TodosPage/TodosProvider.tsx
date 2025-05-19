@@ -1,7 +1,4 @@
 import { TodosContext } from "./TodosContext";
-
-// import { TodosType } from "@/types/TodosType";
-
 import useAllTodos from "@/hooks/getAllTodos";
 
 export const TodosProvider = ({ children }: { children: React.ReactNode }) => {

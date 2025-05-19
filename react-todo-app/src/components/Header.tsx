@@ -8,7 +8,6 @@ const Header = () => (
     <header className={cn(
       'sticky top-0 z-9 bg-background text-foreground shadow-md',
       'h-[60px] flex items-center',
-      // 'border border-b-primary dark:border-b-primary-foreground',
     )}>
       <div className="flex items-center justify-between container mx-auto">
         <div className="flex items-center gap-2">

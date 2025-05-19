@@ -1,7 +1,9 @@
+<script setup lang="ts">
+import CustomHeader from "@/components/CustomHeader.vue"
+</script>
 <template>
-  <div>
-    <header>Navbar</header>
-    <main><slot /></main>
-    <footer>Footer</footer>
-  </div>
+  <CustomHeader />
+  <main className="min-h-[calc(100vh_-_60px-_60px)] bg-accent text-foreground">
+    <slot />
+  </main>
 </template>
